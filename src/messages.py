@@ -1,0 +1,1 @@
+ENV_VAR_MISSING="{} is not assigned in the environment"
