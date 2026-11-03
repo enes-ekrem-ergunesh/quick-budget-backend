@@ -1,6 +1,6 @@
 from sqlmodel import Session
 
-from ..user.model import User_Account
+from ..user.models import User_Account
 from ..user.repository import insert_user as user_insert_user, select_user_by_email as user_select_user_by_email
 
 def insert_user(user_account: User_Account, session: Session):

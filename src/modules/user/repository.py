@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from .model import User_Account
+from .models import User_Account
 
 
 def insert_user(user_account: User_Account, session: Session):

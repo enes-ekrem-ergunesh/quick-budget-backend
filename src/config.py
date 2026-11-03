@@ -17,16 +17,20 @@ def raise_for_missing(name: str):
    raise Exception(ENV_VAR_MISSING.format(name));
         
 class Settings(BaseSettings):
-    debug: bool = os.getenv("FASTAPI_ENV", "development") == "development"
-    db_host: str = "127.0.0.1" if debug else "db"
-    db_port: int = int(os.getenv("POSTGRES_HOST_PORT", "5432"))
-    db_user: str | None = os.getenv("POSTGRES_USER")
-    db_pass: str | None = os.getenv("POSTGRES_PASSWORD")
-    db_name: str | None = os.getenv("POSTGRES_DB")
+    DEBUG: bool = os.getenv("FASTAPI_ENV", "development") == "development"
+    DB_HOST: str = "127.0.0.1" if DEBUG else "db"
+    DB_PORT: int = int(os.getenv("POSTGRES_HOST_PORT", "5432"))
+    DB_USER: str | None = os.getenv("POSTGRES_USER")
+    DB_PASS: str | None = os.getenv("POSTGRES_PASSWORD")
+    DB_NAME: str | None = os.getenv("POSTGRES_DB")
+    JWT_SECRET: str | None = os.getenv("JWT_SECRET")
+    JWT_ALGORITHM: str = 'HS256'
+    ACCESS_TOKEN_TTL: int = 60
 
-    if db_user is None: raise_for_missing("db_user")
-    if db_pass is None: raise_for_missing("db_pass")
-    if db_name is None: raise_for_missing("db_name")
+    if DB_USER is None: raise_for_missing("db_user")
+    if DB_PASS is None: raise_for_missing("db_pass")
+    if DB_NAME is None: raise_for_missing("db_name")
+    if JWT_SECRET is None: raise_for_missing("jwt_secret")
 
 
 settings = Settings()

@@ -4,8 +4,8 @@ from sqlmodel import Session, create_engine
 
 from ..config import settings
 
-database_url = f"postgresql+psycopg2://{settings.db_user}:{settings.db_pass}@{settings.db_host}:{settings.db_port}/{settings.db_name}"
-engine = create_engine(database_url, echo=settings.debug)
+database_url = f"postgresql+psycopg2://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
+engine = create_engine(database_url, echo=settings.DEBUG)
 
 
 def get_session():

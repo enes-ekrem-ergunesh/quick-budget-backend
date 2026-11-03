@@ -1,1 +1,5 @@
+from .core.messages import INVALID_TOKEN, EXPIRED_TOKEN
+
 ENV_VAR_MISSING="{} is not assigned in the environment"
+SESSION_MISSING=INVALID_TOKEN
+SESSION_REVOKED=EXPIRED_TOKEN

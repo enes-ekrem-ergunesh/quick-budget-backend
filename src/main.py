@@ -5,7 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .modules import default, auth
 
-app = FastAPI()
+app = FastAPI(
+    swagger_ui_parameters={"docExpansion": "none"}
+)
 
 app.include_router(default.router)
 app.include_router(auth.router)
