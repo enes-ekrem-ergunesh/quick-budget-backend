@@ -3,6 +3,7 @@ from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
 from . import service as auth_service, schemas, messages
+from ..default.schemas import DetailResponse
 from ...db.session import SessionDep
 from ...dependencies import AuthDep
 from ...core import security
@@ -28,4 +29,4 @@ async def login(form_data: security.OAuth2PassReqDep, session: SessionDep):
 async def logout(auth: AuthDep):
     auth_session, session = auth
     auth_service.logout(auth_session, session)
-    return {"message": messages.LOGOUT_SUCCESS}
+    return DetailResponse(detail=messages.LOGOUT_SUCCESS)

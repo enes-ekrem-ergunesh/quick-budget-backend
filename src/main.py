@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
-from .modules import default, auth
+from .modules import default, auth, category, entry
 
 app = FastAPI(
     swagger_ui_parameters={"docExpansion": "none"}
@@ -11,6 +11,8 @@ app = FastAPI(
 
 app.include_router(default.router)
 app.include_router(auth.router)
+app.include_router(category.router)
+app.include_router(entry.router)
 
 app.add_middleware(
     CORSMiddleware,

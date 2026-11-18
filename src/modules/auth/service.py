@@ -7,6 +7,7 @@ from . import messages, repository, schemas, models
 from ...core import security
 from ...config import settings
 from .dependencies import User_Account, insert_user, select_user_by_email
+from ..category.service import import_default_categories
 
 
 def register(body: schemas.Register, session: Session):
@@ -23,6 +24,8 @@ def register(body: schemas.Register, session: Session):
         id=user_id, email=body.email, password_hash=password_hash
     )
     insert_user(user_account, session)
+    
+    import_default_categories(user_id, session)
 
     # Create session and access token
     access_token = create_session_and_token(user_id=user_id, session=session)
