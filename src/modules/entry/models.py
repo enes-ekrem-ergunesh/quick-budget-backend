@@ -1,7 +1,7 @@
 import uuid
 from enum import Enum
 from typing import TYPE_CHECKING, Optional
-from datetime import datetime, UTC
+from datetime import date, time, datetime, UTC
 from sqlmodel import SQLModel, Field, Relationship
 
 if TYPE_CHECKING:
@@ -21,6 +21,9 @@ class Entry(SQLModel, table=True):
   amount: float | None = Field(default=None)
   currency: str | None = Field(default=None)
   type: EntryType | None = Field(default=None)
+  entry_date: date | None = Field(default=None)
+  entry_time: time | None = Field(default=None)
+  note: str | None = Field(default=None)
   created_at: datetime = Field(default=datetime.now(UTC))
   updated_at: datetime | None = Field(default=None)
 

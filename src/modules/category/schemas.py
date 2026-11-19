@@ -5,7 +5,7 @@ class PostCategory(BaseModel):
     title: str
     emoji: str
 
-class PutCategory(BaseModel):
+class PatchCategory(BaseModel):
     id: uuid.UUID
     title: str | None
     emoji: str | None

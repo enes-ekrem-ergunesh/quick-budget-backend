@@ -25,9 +25,9 @@ async def post_category(new_category: schemas.PostCategory, auth: AuthDep):
     return service.post_category(auth_session, new_category, session)
 
 @router.patch("/")
-async def put_category(category: schemas.PutCategory, auth: AuthDep):
+async def put_category(category: schemas.PatchCategory, auth: AuthDep):
     auth_session, session = auth
-    return service.put_category(auth_session, category, session)
+    return service.patch_category(auth_session, category, session)
 
 @router.delete("/{category_id}")
 async def delete_category(category_id: uuid.UUID, auth: AuthDep):

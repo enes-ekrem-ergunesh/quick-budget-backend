@@ -31,18 +31,18 @@ def post_category(
     return category
 
 
-def put_category(
-    auth_session: Auth_Session, put_category: schemas.PutCategory, session: Session
+def patch_category(
+    auth_session: Auth_Session, patch_category: schemas.PatchCategory, session: Session
 ):
-    category = session.get(models.Category, put_category.id)
+    category = session.get(models.Category, patch_category.id)
     if not category:
         raise HTTPException(404, "Category not found")
     if category.user_account != auth_session.user_account:
         raise HTTPException(403, "You should own the category to update it")
-    if put_category.title:
-        category.title = put_category.title
-    if put_category.emoji:
-        category.emoji = put_category.emoji
+    if patch_category.title:
+        category.title = patch_category.title
+    if patch_category.emoji:
+        category.emoji = patch_category.emoji
     session.add(category)
     session.commit()
     session.refresh(category)
